@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: API-Gateway
+
+  cloud:
+    gateway:
+      mvc:
+        routes:
+        - id: SPRINGSECURITYDEMO
+          uri: lb://SPRINGSECURITYDEMO
+          predicates:
+            - Path=/zenuserapp/**
+        - id: STOCKAPP
+          uri: lb://STOCKAPP
+          predicates:
+            - Path=/zenarstockapp/**
+
+server:
+  port: 9191
+  
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
